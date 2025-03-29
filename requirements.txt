@@ -1,0 +1,10 @@
+﻿pyaudio
+speechrecognition
+pyttsx3
+pyautogui
+Pillow
+pyinstaller
+setuptools
+opencv-python
+requests
+googletrans==4.0.0-rc1

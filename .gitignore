@@ -1,0 +1,54 @@
+# Python-specific files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folder
+venv/
+ENV/
+env/
+.venv/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# PyInstaller
+*.spec
+
+# VS Code settings
+.vscode/
+
+# IDE specific files
+.idea/
+
+# Operating system-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python wheel files
+*.whl
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# MyPy
+.mypy_cache/
+
+# Pylint
+pylint-report.txt
+pylint-output.txt
+
+# Coverage
+.coverage
+.coverage.*
+
+# Cython debug symbols
+cython_debug/
+
+# .env file for sensitive information (if any)
+.env
