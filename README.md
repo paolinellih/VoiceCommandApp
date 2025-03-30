@@ -1,11 +1,12 @@
 # 🎤 Windows Voice Command Application
 
-Welcome to the **Windows Voice Command Application**! This project demonstrates how Python can be used for voice command tasks and fetching advice from APIs. You can run it from the command line or even create a standalone EXE for easy use. 🚀
+Welcome to the **Windows Voice Command Application**! This project demonstrates how Python can be used for voice command tasks and fetching advice from APIs. It also includes a **unique IoT integration**, where the system can control other computers over a local network. You can run it from the command line or even create a standalone EXE for easy use. 🚀
 
 ## 🎉 What You'll Learn:
 - How to control your computer using voice commands (open browser, calculator, take screenshots, etc.).
 - Fetch random advice from an API and translate it to Portuguese.
 - How to create a Python `.EXE` file that can be run without Python installed!
+- IoT Integration: Control other PCs running the same project over a local network via Flask API.
 
 ## 💻 Getting Started
 
@@ -69,7 +70,15 @@ Now that everything is set up, you can run the project!
 
 The app will listen for voice commands and respond accordingly!
 
-### 7. Create the `.EXE` File
+### 7. IoT Integration - Remote Control Over Network
+
+When you run the project, it will first prompt you for the IP address of the computer you wish to control. The application acts as both a client and a server depending on the IP provided:
+- Server Mode: If you enter localhost or 127.0.0.1, it will act as the server and listen for commands.
+- Client Mode: If you enter a different computer's IP address on the same network, it will send commands to that computer running the project.
+
+This allows you to control other computers running the same project over the local network via the Flask API, making it an IoT integration!
+
+### 8. Create the `.EXE` File
 
 Want to make your voice command app a standalone EXE file? Here’s how you can do it:
 
@@ -84,7 +93,7 @@ Want to make your voice command app a standalone EXE file? Here’s how you can 
 
 3. Once the build completes, you’ll find the `.EXE` file in the `dist` folder.
 
-### 8. Test the EXE
+### 9. Test the EXE
 
 - Go to the `dist` folder and double-click on `main.exe` to run the application.
 
@@ -99,11 +108,17 @@ Your voice commands and API fetching features should be ready to go! 🎤
 Say "Oi Carol!" to wake her up, and then try these commands:
 
 1️⃣ "abrir calculadora" – Opens the calculator.
+
 2️⃣ "abrir navegador" – Launches the web browser.
+
 3️⃣ "diminuir brilho" – Lowers the screen brightness.
+
 4️⃣ "aumentar brilho" – Brightens the screen.
+
 5️⃣ "capturar tela" – Takes a screenshot.
+
 6️⃣ "quero um conselho" – Fetches a random piece of advice and translates it to Portuguese.
+
 And there are more hidden commands waiting to be discovered!
 Can you find them all? 🤫💡
 

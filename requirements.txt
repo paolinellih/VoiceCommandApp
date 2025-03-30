@@ -9,3 +9,5 @@ opencv-python
 requests
 deep-translator
 screen-brightness-control
+tinytuya
+flask

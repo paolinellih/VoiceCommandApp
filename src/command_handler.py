@@ -6,7 +6,8 @@ import webbrowser
 from tkinter import messagebox
 import winsound
 from advice_api import get_advice
-from handle_command_file import delete_file, file_exists, file_name
+from command_file_handler import delete_file, file_exists, file_name
+from text_to_speech import speak_text
 from translator import translate_to_portuguese
 from image_display import show_image  # Import the function from image_display.py
 import pyautogui
@@ -31,6 +32,7 @@ def open_url(url):
     webbrowser.open(url)
 
 def show_hidden_image():
+    play_melody()
     show_image()
 
 def show_messagebox(title, message):
@@ -49,12 +51,13 @@ def close_carol():
         print("Deleting file...")
         delete_file(command_file_name)
     print("Fechando Carol...")
+    speak_text("Abraços, até logo!")
     sys.exit()  # Exit the program
 
-async def quero_um_conselho():
+async def get_adivice():
     advice = get_advice()
     translated_advice = await translate_to_portuguese(advice)
-    show_messagebox("Conselho", translated_advice)
+    speak_text(translated_advice)
 
 def take_screenshot():
     """Take a screenshot, save it, and open it"""
@@ -73,8 +76,14 @@ def take_screenshot():
     except Exception as e:
         print(f"Erro ao abrir a captura de tela: {e}")
 
+def play_melody():
+    notes = [(1000, 200), (1200, 200), (1400, 200), (1600, 400)]
+    for freq, dur in notes:
+        winsound.Beep(freq, dur)
+
 def execute_command(command):
     command = command.lower()  # Ensure case-insensitivity
+    
     
     # Define command-action mappings
     command_actions = {
@@ -83,13 +92,14 @@ def execute_command(command):
         "abrir bloco de notas": lambda: open_program("bloco de notas"),
         "abrir gerenciador de tarefas": lambda: open_program("gerenciador de tarefas"),
         "abrir google": lambda: open_url("https://www.google.com"),
+        "abrir youtube": lambda: open_url("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
         "capturar tela": take_screenshot,
         "mostrar foto": show_hidden_image,
         "compartilhar projeto": lambda: open_url("https://www.linkedin.com/in/henriquepaolinelli"),
         "baixar brilho": lambda: decrease_brightness(sbc.get_brightness()[0]),
         "aumentar brilho": lambda: increase_brightness(sbc.get_brightness()[0]),
         "que horas são": lambda: show_messagebox("Hora Atual", time.strftime("%H:%M:%S")),
-        "quero um conselho": lambda: asyncio.run(quero_um_conselho()),
+        "quero um conselho": lambda: asyncio.run(get_adivice()),
         "fechar carol": close_carol,
     }
 
@@ -101,4 +111,5 @@ def execute_command(command):
             return  # Exit after executing a command
         
     play_wrong_sound()  # Play wrong sound if no match is found
+    speak_text("Desculpe, não entendi o comando.")
     print("Comando não reconhecido.")
