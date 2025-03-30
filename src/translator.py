@@ -1,8 +1,6 @@
 import asyncio
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 async def translate_to_portuguese(text):
-    translator = Translator()
-    # `await` the translation to handle the coroutine properly
-    translation = await translator.translate(text, src='en', dest='pt')
-    return translation.text
+    translated_text = GoogleTranslator(source="auto", target="pt").translate(text)
+    return translated_text

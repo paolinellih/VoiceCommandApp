@@ -8,7 +8,7 @@ import shutil
 from PIL import Image
 
 # Set up logging
-logging.basicConfig(filename="app.log", level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+#logging.basicConfig(filename="app.log", level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def get_resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):

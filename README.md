@@ -94,17 +94,18 @@ Your voice commands and API fetching features should be ready to go! 🎤
 
 ## 📝 Project Commands
 
-Here are some of the commands the app recognizes:
+🔍 Discover the Hidden Commands! 🔍
 
-You have a wake-up word "Carol" (Portuguese). So you can say "Oi Carol!" and then:
+Say "Oi Carol!" to wake her up, and then try these commands:
 
-- **"quero um conselho"** – Fetches a random piece of advice and translates it to Portuguese.
-- **"abrir calculadora"** – Opens the calculator.
-- **"abrir navegador"** – Opens the web browser.
-- **"diminuir brilho"** – Decreases the brightness.
-- **"aumentar brilho"** – Increases the brightness.
-- **"capturar tela"** – Takes a screenshot.
-- ... and so one
+1️⃣ "abrir calculadora" – Opens the calculator.
+2️⃣ "abrir navegador" – Launches the web browser.
+3️⃣ "diminuir brilho" – Lowers the screen brightness.
+4️⃣ "aumentar brilho" – Brightens the screen.
+5️⃣ "capturar tela" – Takes a screenshot.
+6️⃣ "quero um conselho" – Fetches a random piece of advice and translates it to Portuguese.
+And there are more hidden commands waiting to be discovered!
+Can you find them all? 🤫💡
 
 Feel free to change these commands or add your own!
 
