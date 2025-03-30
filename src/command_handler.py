@@ -1,10 +1,12 @@
 ﻿import asyncio
 import os
+import sys
 import time
 import webbrowser
 from tkinter import messagebox
 import winsound
 from advice_api import get_advice
+from handle_command_file import delete_file, file_exists, file_name
 from translator import translate_to_portuguese
 from image_display import show_image  # Import the function from image_display.py
 import pyautogui
@@ -28,22 +30,31 @@ def open_url(url):
     """Open a URL in the browser"""
     webbrowser.open(url)
 
-def mostrar_imagem_oculta():
+def show_hidden_image():
     show_image()
 
-def baixar_brilho(current_brightness):
-    sbc.set_brightness(max(current_brightness - 50, 0))
-
-def mostrar_messagebox(title, message):
+def show_messagebox(title, message):
     messagebox.showinfo(title, message)
 
-def aumentar_brilho(current_brightness):
+def increase_brightness(current_brightness):
     sbc.set_brightness(min(current_brightness + 50, 100))
+
+def decrease_brightness(current_brightness):
+    sbc.set_brightness(max(current_brightness - 50, 0))
+
+def close_carol():
+    """Close the app"""
+    command_file_name = file_name()
+    if file_exists(command_file_name):
+        print("Deleting file...")
+        delete_file(command_file_name)
+    print("Fechando Carol...")
+    sys.exit()  # Exit the program
 
 async def quero_um_conselho():
     advice = get_advice()
     translated_advice = await translate_to_portuguese(advice)
-    mostrar_messagebox("Conselho", translated_advice)
+    show_messagebox("Conselho", translated_advice)
 
 def take_screenshot():
     """Take a screenshot, save it, and open it"""
@@ -73,12 +84,13 @@ def execute_command(command):
         "abrir gerenciador de tarefas": lambda: open_program("gerenciador de tarefas"),
         "abrir google": lambda: open_url("https://www.google.com"),
         "capturar tela": take_screenshot,
-        "mostrar foto": mostrar_imagem_oculta,
+        "mostrar foto": show_hidden_image,
         "compartilhar projeto": lambda: open_url("https://www.linkedin.com/in/henriquepaolinelli"),
-        "baixar brilho": lambda: baixar_brilho(sbc.get_brightness()[0]),
-        "aumentar brilho": lambda: aumentar_brilho(sbc.get_brightness()[0]),
-        "que horas são": lambda: mostrar_messagebox("Hora Atual", time.strftime("%H:%M:%S")),
+        "baixar brilho": lambda: decrease_brightness(sbc.get_brightness()[0]),
+        "aumentar brilho": lambda: increase_brightness(sbc.get_brightness()[0]),
+        "que horas são": lambda: show_messagebox("Hora Atual", time.strftime("%H:%M:%S")),
         "quero um conselho": lambda: asyncio.run(quero_um_conselho()),
+        "fechar carol": close_carol,
     }
 
     # Check if any predefined command **includes** the spoken text
